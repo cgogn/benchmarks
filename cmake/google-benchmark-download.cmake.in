@@ -1,0 +1,25 @@
+# code inspired by https://crascit.com/2015/07/25/cmake-gtest/
+cmake_minimum_required(VERSION 3.5 FATAL_ERROR)
+
+project(google-benchmark-download NONE)
+
+include(ExternalProject)
+
+ExternalProject_Add(
+  google-benchmark
+  SOURCE_DIR "@GOOGLE_BENCHMARK_DOWNLOAD_ROOT@/google-benchmark-src"
+  BINARY_DIR "@GOOGLE_BENCHMARK_DOWNLOAD_ROOT@/google-benchmark-build"
+  GIT_REPOSITORY
+    https://github.com/google/benchmark.git
+  GIT_TAG
+    v1.4.1
+  CONFIGURE_COMMAND ""
+  BUILD_COMMAND ""
+  INSTALL_COMMAND ""
+  TEST_COMMAND ""
+  CMAKE_ARGS
+    -DCMAKE_BUILD_TYPE:STRING=${BUILD_TYPE}
+    -DBENCHMARK_ENABLE_TESTING:BOOL=OFF
+    -DBENCHMARK_ENABLE_INSTALL:BOOL=OFF
+    -DBENCHMARK_ENABLE_GTEST_TESTS:BOOL=OFF
+)
